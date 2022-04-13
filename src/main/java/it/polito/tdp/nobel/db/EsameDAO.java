@@ -11,6 +11,8 @@ import it.polito.tdp.nobel.model.Esame;
 
 public class EsameDAO {
 
+	//questa classe te la davano già fatta
+	
 	public List<Esame> getTuttiEsami() {
 
 		final String sql = "SELECT * FROM esami";

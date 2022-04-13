@@ -13,10 +13,11 @@ public class Model {
 	private double mediaMigliore;
 	
 	public Model() {
-		EsameDAO dao = new EsameDAO();
-		this.esami = dao.getTuttiEsami();
+		EsameDAO dao = new EsameDAO(); //qua ricordati di inizializzare sempre la classe DAO
+		this.esami = dao.getTuttiEsami(); //qua prende tutti gli esami dal database
 	}
 	
+	//questo è il metodo da cui si parte
 	public Set<Esame> calcolaSottoinsiemeEsami(int m) {
 		//ripristino soluzione migliore
 		migliore = new HashSet<Esame>();
@@ -84,20 +85,23 @@ public class Model {
 		}
 		
 		//sicuramente, crediti < m
-		if(L == esami.size())
+		if(L == esami.size()) 
+			/*questo ti prende anche il caso mettessi un numero 
+			di credito troppo alto che prendi tuttti gli esami e non arrivi a quel numero di crediti*/
 			return;
 		
-		//generiamo i sotto-problemi
+		//generiamo i sotto-problemi, se sei arrivato a questo punto vuol dire che non è uscito prima
 		for(Esame e : esami) {
 			if(!parziale.contains(e)) {
 				parziale.add(e);
 				cerca1(parziale, L+1, m);
-				parziale.remove(e);
+				parziale.remove(e); //backtrakking  avendo usato HashSet puoi farlo così
 			}
 		}
 		
 	}
 
+	// questo metodo te lo davano già
 	public double calcolaMedia(Set<Esame> esami) {
 		
 		int crediti = 0;
@@ -111,6 +115,7 @@ public class Model {
 		return somma/crediti;
 	}
 	
+	// questo metodo te lo davano già
 	public int sommaCrediti(Set<Esame> esami) {
 		int somma = 0;
 		

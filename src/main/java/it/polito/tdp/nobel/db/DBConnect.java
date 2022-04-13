@@ -8,6 +8,7 @@ public class DBConnect {
 
 	static private final String jdbcUrl = "jdbc:mysql://localhost/esamitriennale?user=root&password=rootroot";
 
+	//ricordati che è statico
 	public static Connection getConnection() {
 
 		try {
